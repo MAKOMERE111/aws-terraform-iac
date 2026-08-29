@@ -17,30 +17,20 @@ A modular Terraform project provisioning real AWS infrastructure - VPC, EC2 web 
 **Structure:** VPC module (VPC, public subnet, Internet Gateway, route table) → EC2 web server + security group (root-level) → S3 logging bucket (root-level, independent resource)
 
 ## Project Structure
+
 terraform-aws-project/
-├── main.tf # Provider + Terraform version requirements
-├── variables.tf # Root-level input variables
-├── outputs.tf # Exposed values (VPC ID, public IP, URL)
-├── vpc.tf # Calls the VPC module
-├── ec2.tf # Security group + EC2 instance + AMI data source
-├── s3.tf # S3 bucket + versioning + public access block
-├── terraform.tfvars # Local values (gitignored - contains my IP)
+├── main.tf              # Provider + Terraform version requirements
+├── variables.tf         # Root-level input variables
+├── outputs.tf           # Exposed values (VPC ID, public IP, URL)
+├── vpc.tf               # Calls the VPC module
+├── ec2.tf                # Security group + EC2 instance + AMI data source
+├── s3.tf                 # S3 bucket + versioning + public access block
+├── terraform.tfvars     # Local values (gitignored — contains my IP)
 └── modules/
-└── vpc/
-├── main.tf # VPC, subnet, IGW, route table resources
-├── variables.tf # Module's required inputs (no defaults - caller must supply)
-└── outputs.tf # vpc_id, public_subnet_id exposed to root
-
-
-## Design Decisions
-
-| Decision | Why |
-|---|---|
-| Terraform over CloudFormation/CDK | Cloud-agnostic, largest ecosystem, most commonly requested IaC skill |
-| Local state (for now) | Simplest way to learn what state actually is before adding remote-state complexity; documented as a future improvement |
-| VPC as a proper child module | Demonstrates real code reuse, not just file organization - module has its own required inputs and explicit outputs, no hidden defaults |
-| Every environment-specific value as a variable | The actual point of IaC - code that's reusable without editing, not just automation of one-off manual steps |
-| `.tfvars` for the IP address, gitignored | Environment-specific and mildly identifying - kept out of version control while the `.tf` files referencing it stay safely shareable |
+    └── vpc/
+        ├── main.tf       # VPC, subnet, IGW, route table resources
+        ├── variables.tf  # Module's required inputs (no defaults — caller must supply)
+        └── outputs.tf    # vpc_id, public_subnet_id exposed to root
 
 ## Evidence
 
