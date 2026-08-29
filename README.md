@@ -18,6 +18,7 @@ A modular Terraform project provisioning real AWS infrastructure - VPC, EC2 web 
 
 ## Project Structure
 
+'''
 terraform-aws-project/
 ├── main.tf              # Provider + Terraform version requirements
 ├── variables.tf         # Root-level input variables
@@ -31,6 +32,7 @@ terraform-aws-project/
         ├── main.tf       # VPC, subnet, IGW, route table resources
         ├── variables.tf  # Module's required inputs (no defaults — caller must supply)
         └── outputs.tf    # vpc_id, public_subnet_id exposed to root
+'''
 
 ## Evidence
 
