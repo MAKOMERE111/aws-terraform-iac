@@ -1,0 +1,17 @@
+# Terraform state - NEVER commit
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Variable files with potentially sensitive/environment-specific values
+terraform.tfvars
+*.auto.tfvars
+
+# Crash logs
+crash.log
+crash.*.log
+
+# OS files
+Thumbs.db
+.DS_Store
