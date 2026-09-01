@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "logs" {
 
   tags = {
     Name        = "${var.project_name}-logs"
-    Environment = "portfolio-demo"
+    Environment = "portfolio-demo-cicd"
   }
 }
 
