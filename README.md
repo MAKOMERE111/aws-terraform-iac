@@ -75,6 +75,8 @@ terraform-aws-project/
 
 ## CI/CD Pipeline (GitHub Actions)
 
+![CI/CD Architecture](architecture/cicd-architecture.png)
+
 This same Terraform codebase is also deployed via an automated pipeline - no manual `terraform apply` from a laptop required. The workflow lives at [`.github/workflows/terraform.yml`](.github/workflows/terraform.yml).
 
 **How it works:**
@@ -125,6 +127,6 @@ The first pipeline run revealed a genuine issue: Terraform's local state file (`
 ## Future Improvements
 - **Remote state** - migrate from local `terraform.tfstate` to an S3 backend with DynamoDB state locking, enabling safe team collaboration and removing the single-point-of-failure risk of a local state file
 - **Workspaces or separate `.tfvars` files** for multiple environments (dev/staging/prod) from the same codebase
-- ~~CI/CD integration~~ - **done**, see the [CI/CD Pipeline](#cicd-pipeline-github-actions) section below
+- ~~CI/CD integration~~ - **done**, see the [CI/CD Pipeline](#cicd-pipeline-github-actions) section above
 - Commit `.terraform.lock.hcl` in a real team setting (excluded here since this is a single-maintainer portfolio repo where fresh `init` is expected)
 
